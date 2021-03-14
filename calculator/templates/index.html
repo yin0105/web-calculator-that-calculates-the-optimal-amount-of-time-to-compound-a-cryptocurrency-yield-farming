@@ -30,55 +30,307 @@
     </head>
     <body>
 		<div class="main">
+			<div class="header">
+				<h1>Calculator</h1>
+			</div>
 			<div class="container">
-				<div class="left-container">
-					<div class="range-slider">
-						<input type="text" class="js-range-slider" value="" />
-					</div>
-					<div class="extra-controls">
-						<input type="text" class="js-input" value="0" />
+				<div id="left-container">
+					<div class="input-unit">
+						<label>Token APR: </label>
+						<div class="extra-controls">
+							<input type="text" class="js-input" value="0" id="i_apr" name="i_apr" />
+						</div>
+						<div class="range-slider">
+							<input type="text" class="js-range-slider" id="r_apr" name="r_apr" value="" />
+						</div>
 					</div>
 
+					<div class="input-unit">
+						<label>Gas Fee: </label>
+						<div class="extra-controls">
+							<input type="text" class="js-input" value="0" id="i_fee" name="i_fee" />
+						</div>
+						<div class="range-slider">
+							<input type="text" class="js-range-slider" value="" id="r_fee" name="r_fee"/>
+						</div>
+					</div>
+
+					<div class="input-unit">
+						<label>Time Horizon: </label>
+						<div class="extra-controls">
+							<input type="text" class="js-input" value="0" id="i_th" name="i_th" />
+						</div>
+						<div class="range-slider">
+							<input type="text" class="js-range-slider" value="" id="r_th" name="r_th"/>
+						</div>
+					</div>
+
+					<div class="input-unit">
+						<label>Token Start Count: </label>
+						<div class="extra-controls">
+							<input type="text" class="js-input" value="0" id="i_tsc" name="i_tsc" />
+						</div>
+						<div class="range-slider">
+							<input type="text" class="js-range-slider" value="" id="r_tsc" name="r_tsc"/>
+						</div>
+					</div>
+
+					<div class="input-unit">
+						<label>Token Start Price: </label>
+						<div class="extra-controls">
+							<input type="text" class="js-input" value="0" id="i_tsp" name="i_tsp" />
+						</div>
+						<div class="range-slider">
+							<input type="text" class="js-range-slider" value="" id="r_tsp" name="r_tsp"/>
+						</div>
+					</div>
+
+					<div class="input-unit">
+						<label>Token End Price: </label>
+						<div class="extra-controls">
+							<input type="text" class="js-input" value="0" id="i_tep" name="i_tep" />
+						</div>
+						<div class="range-slider">
+							<input type="text" class="js-range-slider" value="" id="r_tep" name="r_tep"/>
+						</div>
+					</div>			
 				</div>
-				<div class="right-container">
+				<div id="right-container">
 
 				</div>
 			</div>
 		</div>
         <script>
-			var $range = $(".js-range-slider"),
-				$input = $(".js-input"),
-				instance,
-				min = 0,
-				max = 1000;
+////////////// APR
+			var $range_apr = $("#r_apr"),
+				$input_apr = $("#i_apr"),
+				instance_apr,
+				min_apr = 0,
+				max_apr = 1000;
+				from_apr = 500;
 	
-			$range.ionRangeSlider({
-				skin: "big",
+			$range_apr.ionRangeSlider({
+				skin: "modern",
 				type: "single",
-				min: min,
-				max: max,
-				from: 500,
+				min: min_apr,
+				max: max_apr,
+				from: from_apr,
 				onStart: function(data) {
-					$input.prop("value", data.from);
+					$input_apr.prop("value", data.from);
 				},
 				onChange: function(data) {
-					$input.prop("value", data.from);
+					$input_apr.prop("value", data.from);
 				}
 			});
 	
-			instance = $range.data("ionRangeSlider");
+			instance_apr = $range_apr.data("ionRangeSlider");
 	
-			$input.on("change keyup", function() {
+			$input_apr.on("change keyup", function() {
 				var val = $(this).prop("value");
 	
 				// validate
-				if (val < min) {
-					val = min;
-				} else if (val > max) {
-					val = max;
+				if (val < min_apr) {
+					val = min_apr;
+				} else if (val > max_apr) {
+					val = max_apr;
 				}
 	
-				instance.update({
+				instance_apr.update({
+					from: val
+				});
+			});
+
+////////////// Gas Fee
+			var $range_fee = $("#r_fee"),
+				$input_fee = $("#i_fee"),
+				instance_fee,
+				min_fee = 0,
+				max_fee = 1000;
+				from_fee = 500;
+	
+			$range_fee.ionRangeSlider({
+				skin: "modern",
+				type: "single",
+				min: min_fee,
+				max: max_fee,
+				from: from_fee,
+				onStart: function(data) {
+					$input_fee.prop("value", data.from);
+				},
+				onChange: function(data) {
+					$input_fee.prop("value", data.from);
+				}
+			});
+	
+			instance_fee = $range_fee.data("ionRangeSlider");
+	
+			$input_fee.on("change keyup", function() {
+				var val = $(this).prop("value");
+	
+				// validate
+				if (val < min_fee) {
+					val = min_fee;
+				} else if (val > max_fee) {
+					val = max_fee;
+				}
+	
+				instance_fee.update({
+					from: val
+				});
+			});
+
+////////////// Time Horizon
+			var $range_th = $("#r_th"),
+				$input_th = $("#i_th"),
+				instance_th,
+				min_th = 0,
+				max_th = 1000;
+				from_th = 500;
+	
+			$range_th.ionRangeSlider({
+				skin: "modern",
+				type: "single",
+				min: min_th,
+				max: max_th,
+				from: from_th,
+				onStart: function(data) {
+					$input_th.prop("value", data.from);
+				},
+				onChange: function(data) {
+					$input_th.prop("value", data.from);
+				}
+			});
+	
+			instance_th = $range_th.data("ionRangeSlider");
+	
+			$input_th.on("change keyup", function() {
+				var val = $(this).prop("value");
+	
+				// validate
+				if (val < min_th) {
+					val = min_th;
+				} else if (val > max_th) {
+					val = max_th;
+				}
+	
+				instance_th.update({
+					from: val
+				});
+			});
+
+////////////// Token Start Count
+			var $range_tsc = $("#r_tsc"),
+				$input_tsc = $("#i_tsc"),
+				instance_tsc,
+				min_tsc = 0,
+				max_tsc = 1000;
+				from_tsc = 500;
+	
+			$range_tsc.ionRangeSlider({
+				skin: "modern",
+				type: "single",
+				min: min_tsc,
+				max: max_tsc,
+				from: from_tsc,
+				onStart: function(data) {
+					$input_tsc.prop("value", data.from);
+				},
+				onChange: function(data) {
+					$input_tsc.prop("value", data.from);
+				}
+			});
+	
+			instance_tsc = $range_tsc.data("ionRangeSlider");
+	
+			$input_tsc.on("change keyup", function() {
+				var val = $(this).prop("value");
+	
+				// validate
+				if (val < min_tsc) {
+					val = min_tsc;
+				} else if (val > max_tsc) {
+					val = max_tsc;
+				}
+	
+				instance_tsc.update({
+					from: val
+				});
+			});
+
+////////////// Token Start Price
+			var $range_tsp = $("#r_tsp"),
+				$input_tsp = $("#i_tsp"),
+				instance_tsp,
+				min_tsp = 0,
+				max_tsp = 1000;
+				from_tsp = 500;
+	
+			$range_tsp.ionRangeSlider({
+				skin: "modern",
+				type: "single",
+				min: min_tsp,
+				max: max_tsp,
+				from: from_tsp,
+				onStart: function(data) {
+					$input_tsp.prop("value", data.from);
+				},
+				onChange: function(data) {
+					$input_tsp.prop("value", data.from);
+				}
+			});
+	
+			instance_tsp = $range_tsp.data("ionRangeSlider");
+	
+			$input_tsp.on("change keyup", function() {
+				var val = $(this).prop("value");
+	
+				// validate
+				if (val < min_tsp) {
+					val = min_tsp;
+				} else if (val > max_tsp) {
+					val = max_tsp;
+				}
+	
+				instance_tsp.update({
+					from: val
+				});
+			});
+
+////////////// Token End Price
+			var $range_tep = $("#r_tep"),
+				$input_tep = $("#i_tep"),
+				instance_tep,
+				min_tep = 0,
+				max_tep = 1000;
+				from_tep = 500;
+	
+			$range_tep.ionRangeSlider({
+				skin: "modern",
+				type: "single",
+				min: min_tep,
+				max: max_tep,
+				from: from_tep,
+				onStart: function(data) {
+					$input_tep.prop("value", data.from);
+				},
+				onChange: function(data) {
+					$input_tep.prop("value", data.from);
+				}
+			});
+	
+			instance_tep = $range_tep.data("ionRangeSlider");
+	
+			$input_tep.on("change keyup", function() {
+				var val = $(this).prop("value");
+	
+				// validate
+				if (val < min_tep) {
+					val = min_tep;
+				} else if (val > max_tep) {
+					val = max_tep;
+				}
+	
+				instance_tep.update({
 					from: val
 				});
 			});

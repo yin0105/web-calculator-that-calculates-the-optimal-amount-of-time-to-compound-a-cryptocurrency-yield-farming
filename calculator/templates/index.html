@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                margin: 60px;
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+            }
+
+            .range-slider {
+                position: relative;
+                height: 80px;
+            }
+        </style>
+        <!--Plugin CSS file with desired skin-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="../static/css/style.css"/>
+		
+        
+        <!--jQuery-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+        <!--Plugin JavaScript file-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+		
+    </head>
+    <body>
+		<div class="main">
+			<div class="container">
+				<div class="left-container">
+					<div class="range-slider">
+						<input type="text" class="js-range-slider" value="" />
+					</div>
+					<div class="extra-controls">
+						<input type="text" class="js-input" value="0" />
+					</div>
+
+				</div>
+				<div class="right-container">
+
+				</div>
+			</div>
+		</div>
+        <script>
+			var $range = $(".js-range-slider"),
+				$input = $(".js-input"),
+				instance,
+				min = 0,
+				max = 1000;
+	
+			$range.ionRangeSlider({
+				skin: "big",
+				type: "single",
+				min: min,
+				max: max,
+				from: 500,
+				onStart: function(data) {
+					$input.prop("value", data.from);
+				},
+				onChange: function(data) {
+					$input.prop("value", data.from);
+				}
+			});
+	
+			instance = $range.data("ionRangeSlider");
+	
+			$input.on("change keyup", function() {
+				var val = $(this).prop("value");
+	
+				// validate
+				if (val < min) {
+					val = min;
+				} else if (val > max) {
+					val = max;
+				}
+	
+				instance.update({
+					from: val
+				});
+			});
+		</script>
+    </body>
+	
+    
+</html>

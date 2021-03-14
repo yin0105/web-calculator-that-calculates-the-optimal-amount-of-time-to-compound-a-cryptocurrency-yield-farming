@@ -1,22 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-            body {
-                margin: 60px;
-                font-family: Arial, sans-serif;
-                font-size: 12px;
-            }
-
-            .range-slider {
-                position: relative;
-                height: 80px;
-            }
-        </style>
         <!--Plugin CSS file with desired skin-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="../static/css/style.css"/>
+		<link rel="stylesheet" href="/static/css/style.css"/>
 		
         
         <!--jQuery-->
@@ -271,6 +259,7 @@
 				min: min_tsp,
 				max: max_tsp,
 				from: from_tsp,
+				step: 0.01,
 				onStart: function(data) {
 					$input_tsp.prop("value", data.from);
 				},
@@ -303,6 +292,7 @@
 				min_tep = 0,
 				max_tep = 1000;
 				from_tep = 500;
+				
 	
 			$range_tep.ionRangeSlider({
 				skin: "modern",
@@ -310,6 +300,7 @@
 				min: min_tep,
 				max: max_tep,
 				from: from_tep,
+				step: 0.01,
 				onStart: function(data) {
 					$input_tep.prop("value", data.from);
 				},

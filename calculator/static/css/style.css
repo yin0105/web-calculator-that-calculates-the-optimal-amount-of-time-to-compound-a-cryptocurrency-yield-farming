@@ -17,10 +17,8 @@ html body {
 body {
     position: relative;
     padding: 0;
-    margin: 60px;
+    margin: 40px;
     background: #f4f4f6;
-    font-family: Arial, sans-serif;
-    font-size: 12px;
 }
 
 div {
@@ -43,7 +41,7 @@ div {
     width: 850px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 #left-container {
@@ -63,8 +61,20 @@ div {
 }
 
 .range-slider {
-    height: 50px;
+    height: 60px;
     width: 180px;
     position: relative;
+}
+
+.btn-pos {
+    width: 180px;
+    margin-top: 30px;
+}
+
+.bottom-border {
+    width: auto;
+    margin-right: 20px;
+    height: 10px;
+    border-top: 1px solid #ccc;
 }
 

@@ -31,6 +31,7 @@
 						<div class="range-slider">
 							<input type="text" class="js-range-slider" id="r_apr" name="r_apr" value="" />
 						</div>
+						<div class="bottom-border"></div>
 					</div>
 
 					<div class="input-unit">
@@ -41,6 +42,7 @@
 						<div class="range-slider">
 							<input type="text" class="js-range-slider" value="" id="r_fee" name="r_fee"/>
 						</div>
+						<div class="bottom-border"></div>
 					</div>
 
 					<div class="input-unit">
@@ -51,6 +53,7 @@
 						<div class="range-slider">
 							<input type="text" class="js-range-slider" value="" id="r_th" name="r_th"/>
 						</div>
+						<div class="bottom-border"></div>
 					</div>
 
 					<div class="input-unit">
@@ -61,6 +64,7 @@
 						<div class="range-slider">
 							<input type="text" class="js-range-slider" value="" id="r_tsc" name="r_tsc"/>
 						</div>
+						<div class="bottom-border"></div>
 					</div>
 
 					<div class="input-unit">
@@ -71,6 +75,7 @@
 						<div class="range-slider">
 							<input type="text" class="js-range-slider" value="" id="r_tsp" name="r_tsp"/>
 						</div>
+						<div class="bottom-border"></div>
 					</div>
 
 					<div class="input-unit">
@@ -81,7 +86,11 @@
 						<div class="range-slider">
 							<input type="text" class="js-range-slider" value="" id="r_tep" name="r_tep"/>
 						</div>
-					</div>			
+						<div class="bottom-border"></div>
+					</div>	
+					<div class="d-flex justify-content-md-center btn-pos">
+						<button type="button" class="btn btn-primary">Calculate</button>
+					</div>		
 				</div>
 				<div id="right-container">
 
@@ -93,9 +102,9 @@
 			var $range_apr = $("#r_apr"),
 				$input_apr = $("#i_apr"),
 				instance_apr,
-				min_apr = 0,
-				max_apr = 1000;
-				from_apr = 500;
+				min_apr = "{{ TOKEN_APR_MIN }}",
+				max_apr = "{{ TOKEN_APR_MAX }}",
+				from_apr = "{{ TOKEN_APR_FROM }}";
 	
 			$range_apr.ionRangeSlider({
 				skin: "modern",
@@ -132,9 +141,9 @@
 			var $range_fee = $("#r_fee"),
 				$input_fee = $("#i_fee"),
 				instance_fee,
-				min_fee = 0,
-				max_fee = 1000;
-				from_fee = 500;
+				min_fee = "{{ GAS_FEE_MIN }}",
+				max_fee = "{{ GAS_FEE_MAX }}",
+				from_fee = "{{ GAS_FEE_FROM }}";
 	
 			$range_fee.ionRangeSlider({
 				skin: "modern",
@@ -171,9 +180,9 @@
 			var $range_th = $("#r_th"),
 				$input_th = $("#i_th"),
 				instance_th,
-				min_th = 0,
-				max_th = 1000;
-				from_th = 500;
+				min_th = "{{ TIME_HORIZON_DAYS_MIN }}",
+				max_th = "{{ TIME_HORIZON_DAYS_MAX }}",
+				from_th = "{{ TIME_HORIZON_DAYS_FROM }}";
 	
 			$range_th.ionRangeSlider({
 				skin: "modern",
@@ -210,9 +219,9 @@
 			var $range_tsc = $("#r_tsc"),
 				$input_tsc = $("#i_tsc"),
 				instance_tsc,
-				min_tsc = 0,
-				max_tsc = 1000;
-				from_tsc = 500;
+				min_tsc = "{{ TOKEN_START_COUNT_MIN }}",
+				max_tsc = "{{ TOKEN_START_COUNT_MAX }}",
+				from_tsc = "{{ TOKEN_START_COUNT_FROM }}";
 	
 			$range_tsc.ionRangeSlider({
 				skin: "modern",
@@ -249,9 +258,9 @@
 			var $range_tsp = $("#r_tsp"),
 				$input_tsp = $("#i_tsp"),
 				instance_tsp,
-				min_tsp = 0,
-				max_tsp = 1000;
-				from_tsp = 500;
+				min_tsp = "{{ TOKEN_START_PRICE_MIN }}",
+				max_tsp = "{{ TOKEN_START_PRICE_MAX }}",
+				from_tsp = "{{ TOKEN_START_PRICE_FROM }}";
 	
 			$range_tsp.ionRangeSlider({
 				skin: "modern",
@@ -289,9 +298,9 @@
 			var $range_tep = $("#r_tep"),
 				$input_tep = $("#i_tep"),
 				instance_tep,
-				min_tep = 0,
-				max_tep = 1000;
-				from_tep = 500;
+				min_tep = "{{ TOKEN_END_PRICE_MIN }}",
+				max_tep = "{{ TOKEN_END_PRICE_MAX }}",
+				from_tep = "{{ TOKEN_END_PRICE_FROM }}";
 				
 	
 			$range_tep.ionRangeSlider({

@@ -31,7 +31,37 @@ context['TOKEN_END_PRICE_MAX'] = float(os.environ.get('TOKEN_END_PRICE_MAX'))
 
 def index(request):
     global dotenv_path
-    print(dotenv_path)
+
+    if "ta" in request.GET :
+        context['TOKEN_APR_FROM'] = request.GET["ta"]
+    else:
+        context['TOKEN_APR_FROM'] = (context['TOKEN_APR_MIN'] + context['TOKEN_APR_MAX']) / 2
+
+    if "gf" in request.GET :
+        context['GAS_FEE_FROM'] = request.GET["gf"]
+    else:
+        context['GAS_FEE_FROM'] = (context['GAS_FEE_MIN'] + context['GAS_FEE_MAX']) / 2
+
+    if "th" in request.GET :
+        context['TIME_HORIZON_DAYS_FROM'] = request.GET["th"]
+    else:
+        context['TIME_HORIZON_DAYS_FROM'] = (context['TIME_HORIZON_DAYS_MIN'] + context['TIME_HORIZON_DAYS_MAX']) / 2
+
+    if "tsc" in request.GET :
+        context['TOKEN_START_COUNT_FROM'] = request.GET["tsc"]
+    else:
+        context['TOKEN_START_COUNT_FROM'] = (context['TOKEN_START_COUNT_MIN'] + context['TOKEN_START_COUNT_MAX']) / 2
+
+    if "tsp" in request.GET :
+        context['TOKEN_START_PRICE_FROM'] = request.GET["tsp"]
+    else:
+        context['TOKEN_START_PRICE_FROM'] = (context['TOKEN_START_PRICE_MIN'] + context['TOKEN_START_PRICE_MAX']) / 2
+
+    if "tep" in request.GET :
+        context['TOKEN_END_PRICE_FROM'] = request.GET["tep"]
+    else:
+        context['TOKEN_END_PRICE_FROM'] = (context['TOKEN_END_PRICE_MIN'] + context['TOKEN_END_PRICE_MAX']) / 2
+
     
     html_template = loader.get_template( 'index.html' )
     return HttpResponse(html_template.render(context, request))

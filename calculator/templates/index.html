@@ -23,88 +23,108 @@
 			</div>
 			<div class="container">
 				<div id="left-container">
-					<div class="input-unit">
-						<label>Token APR: </label>
-						<div class="extra-controls">
-							<input type="text" class="js-input" value="0" id="i_apr" name="i_apr" />
+					<form action="/calc" method="GET">
+						<div class="input-unit">
+							<label>Token APR: </label>
+							<div class="extra-controls">
+								<input type="text" class="js-input" value="0" id="i_apr" name="i_apr" />
+							</div>
+							<div class="range-slider">
+								<input type="text" class="js-range-slider" id="r_apr" name="r_apr" value="" />
+							</div>
+							<div class="bottom-border"></div>
 						</div>
-						<div class="range-slider">
-							<input type="text" class="js-range-slider" id="r_apr" name="r_apr" value="" />
+	
+						<div class="input-unit">
+							<label>Gas Fee: </label>
+							<div class="extra-controls">
+								<input type="text" class="js-input" value="0" id="i_fee" name="i_fee" />
+							</div>
+							<div class="range-slider">
+								<input type="text" class="js-range-slider" value="" id="r_fee" name="r_fee"/>
+							</div>
+							<div class="bottom-border"></div>
 						</div>
-						<div class="bottom-border"></div>
-					</div>
-
-					<div class="input-unit">
-						<label>Gas Fee: </label>
-						<div class="extra-controls">
-							<input type="text" class="js-input" value="0" id="i_fee" name="i_fee" />
+	
+						<div class="input-unit">
+							<label>Time Horizon: </label>
+							<div class="extra-controls">
+								<input type="text" class="js-input" value="0" id="i_th" name="i_th" />
+							</div>
+							<div class="range-slider">
+								<input type="text" class="js-range-slider" value="" id="r_th" name="r_th"/>
+							</div>
+							<div class="bottom-border"></div>
 						</div>
-						<div class="range-slider">
-							<input type="text" class="js-range-slider" value="" id="r_fee" name="r_fee"/>
+	
+						<div class="input-unit">
+							<label>Token Start Count: </label>
+							<div class="extra-controls">
+								<input type="text" class="js-input" value="0" id="i_tsc" name="i_tsc" />
+							</div>
+							<div class="range-slider">
+								<input type="text" class="js-range-slider" value="" id="r_tsc" name="r_tsc"/>
+							</div>
+							<div class="bottom-border"></div>
 						</div>
-						<div class="bottom-border"></div>
-					</div>
-
-					<div class="input-unit">
-						<label>Time Horizon: </label>
-						<div class="extra-controls">
-							<input type="text" class="js-input" value="0" id="i_th" name="i_th" />
+	
+						<div class="input-unit">
+							<label>Token Start Price: </label>
+							<div class="extra-controls">
+								<input type="text" class="js-input" value="0" id="i_tsp" name="i_tsp" />
+							</div>
+							<div class="range-slider">
+								<input type="text" class="js-range-slider" value="" id="r_tsp" name="r_tsp"/>
+							</div>
+							<div class="bottom-border"></div>
 						</div>
-						<div class="range-slider">
-							<input type="text" class="js-range-slider" value="" id="r_th" name="r_th"/>
+	
+						<div class="input-unit">
+							<label>Token End Price: </label>
+							<div class="extra-controls">
+								<input type="text" class="js-input" value="0" id="i_tep" name="i_tep" />
+							</div>
+							<div class="range-slider">
+								<input type="text" class="js-range-slider" value="" id="r_tep" name="r_tep"/>
+							</div>
+							<div class="bottom-border"></div>
+						</div>	
+						<div class="d-flex justify-content-md-center btn-pos">
+							<button type="button" id="submit" class="btn btn-primary">Calculate</button>
 						</div>
-						<div class="bottom-border"></div>
-					</div>
-
-					<div class="input-unit">
-						<label>Token Start Count: </label>
-						<div class="extra-controls">
-							<input type="text" class="js-input" value="0" id="i_tsc" name="i_tsc" />
-						</div>
-						<div class="range-slider">
-							<input type="text" class="js-range-slider" value="" id="r_tsc" name="r_tsc"/>
-						</div>
-						<div class="bottom-border"></div>
-					</div>
-
-					<div class="input-unit">
-						<label>Token Start Price: </label>
-						<div class="extra-controls">
-							<input type="text" class="js-input" value="0" id="i_tsp" name="i_tsp" />
-						</div>
-						<div class="range-slider">
-							<input type="text" class="js-range-slider" value="" id="r_tsp" name="r_tsp"/>
-						</div>
-						<div class="bottom-border"></div>
-					</div>
-
-					<div class="input-unit">
-						<label>Token End Price: </label>
-						<div class="extra-controls">
-							<input type="text" class="js-input" value="0" id="i_tep" name="i_tep" />
-						</div>
-						<div class="range-slider">
-							<input type="text" class="js-range-slider" value="" id="r_tep" name="r_tep"/>
-						</div>
-						<div class="bottom-border"></div>
-					</div>	
-					<div class="d-flex justify-content-md-center btn-pos">
-						<button type="button" class="btn btn-primary">Calculate</button>
-					</div>		
+					</form>
 				</div>
-				<div id="right-container">
+				<div id="right-container" class="d-flex justify-content-center">
+					<div class="align-self-center">
+						<h2>Deposit Frequency: <span id="sp_df"></span></h2>
+					</div>
 
 				</div>
 			</div>
 		</div>
         <script>
+			$("#submit").on("click", function(){
+				$.ajax({
+					url: "/calc?ta=" + $("#i_apr").val() + "&gf=" + $("#i_fee").val() + "&th=" + $("#i_th").val() + "&tsc=" + $("#i_tsc").val() + "&tsp=" + $("#i_tsp").val() + "&tep=" + $("#i_tep").val(),
+					type: "GET",
+					datatype: "text",
+			
+					success: function (result) { 
+						console.log(result);
+						$("#sp_df").text(result + " days");
+					},
+					error: function (error) {
+						console.log("Error");
+					}       
+				});
+			});  
 ////////////// APR
 			var $range_apr = $("#r_apr"),
 				$input_apr = $("#i_apr"),
 				instance_apr,
-				min_apr = "{{ TOKEN_APR_MIN }}",
-				max_apr = "{{ TOKEN_APR_MAX }}",
-				from_apr = "{{ TOKEN_APR_FROM }}";
+				min_apr = Number("{{ TOKEN_APR_MIN }}"),
+				max_apr = Number("{{ TOKEN_APR_MAX }}"),
+				from_apr = Number("{{ TOKEN_APR_FROM }}");
 	
 			$range_apr.ionRangeSlider({
 				skin: "modern",
@@ -141,9 +161,9 @@
 			var $range_fee = $("#r_fee"),
 				$input_fee = $("#i_fee"),
 				instance_fee,
-				min_fee = "{{ GAS_FEE_MIN }}",
-				max_fee = "{{ GAS_FEE_MAX }}",
-				from_fee = "{{ GAS_FEE_FROM }}";
+				min_fee = Number("{{ GAS_FEE_MIN }}"),
+				max_fee = Number("{{ GAS_FEE_MAX }}"),
+				from_fee = Number("{{ GAS_FEE_FROM }}");
 	
 			$range_fee.ionRangeSlider({
 				skin: "modern",
@@ -180,9 +200,9 @@
 			var $range_th = $("#r_th"),
 				$input_th = $("#i_th"),
 				instance_th,
-				min_th = "{{ TIME_HORIZON_DAYS_MIN }}",
-				max_th = "{{ TIME_HORIZON_DAYS_MAX }}",
-				from_th = "{{ TIME_HORIZON_DAYS_FROM }}";
+				min_th = Number("{{ TIME_HORIZON_DAYS_MIN }}"),
+				max_th = Number("{{ TIME_HORIZON_DAYS_MAX }}"),
+				from_th = Number("{{ TIME_HORIZON_DAYS_FROM }}");
 	
 			$range_th.ionRangeSlider({
 				skin: "modern",
@@ -219,9 +239,9 @@
 			var $range_tsc = $("#r_tsc"),
 				$input_tsc = $("#i_tsc"),
 				instance_tsc,
-				min_tsc = "{{ TOKEN_START_COUNT_MIN }}",
-				max_tsc = "{{ TOKEN_START_COUNT_MAX }}",
-				from_tsc = "{{ TOKEN_START_COUNT_FROM }}";
+				min_tsc = Number("{{ TOKEN_START_COUNT_MIN }}"),
+				max_tsc = Number("{{ TOKEN_START_COUNT_MAX }}"),
+				from_tsc = Number("{{ TOKEN_START_COUNT_FROM }}");
 	
 			$range_tsc.ionRangeSlider({
 				skin: "modern",
@@ -258,9 +278,9 @@
 			var $range_tsp = $("#r_tsp"),
 				$input_tsp = $("#i_tsp"),
 				instance_tsp,
-				min_tsp = "{{ TOKEN_START_PRICE_MIN }}",
-				max_tsp = "{{ TOKEN_START_PRICE_MAX }}",
-				from_tsp = "{{ TOKEN_START_PRICE_FROM }}";
+				min_tsp = Number("{{ TOKEN_START_PRICE_MIN }}"),
+				max_tsp = Number("{{ TOKEN_START_PRICE_MAX }}"),
+				from_tsp = Number("{{ TOKEN_START_PRICE_FROM }}");
 	
 			$range_tsp.ionRangeSlider({
 				skin: "modern",
@@ -298,9 +318,9 @@
 			var $range_tep = $("#r_tep"),
 				$input_tep = $("#i_tep"),
 				instance_tep,
-				min_tep = "{{ TOKEN_END_PRICE_MIN }}",
-				max_tep = "{{ TOKEN_END_PRICE_MAX }}",
-				from_tep = "{{ TOKEN_END_PRICE_FROM }}";
+				min_tep = Number("{{ TOKEN_END_PRICE_MIN }}"),
+				max_tep = Number("{{ TOKEN_END_PRICE_MAX }}"),
+				from_tep = Number("{{ TOKEN_END_PRICE_FROM }}");
 				
 	
 			$range_tep.ionRangeSlider({

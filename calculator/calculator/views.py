@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django import template
 from os.path import join, dirname
 from dotenv import load_dotenv
-import os
+import os, math
 
 cur_path = dirname(__file__)
 env_path = cur_path[:cur_path.rfind("\\")] 
@@ -65,3 +65,36 @@ def index(request):
     
     html_template = loader.get_template( 'index.html' )
     return HttpResponse(html_template.render(context, request))
+
+def calc(request):
+    print(request.GET['ta'])
+    TOKEN_APR = float(request.GET['ta'])
+    print(TOKEN_APR)
+    GAS_FEE = float(request.GET['gf'])
+    print(GAS_FEE)
+    TIME_HORIZON_DAYS = int(request.GET['th'])
+    print(TIME_HORIZON_DAYS)
+    TOKEN_START_COUNT = float(request.GET['tsc'])
+    TOKEN_START_PRICE = float(request.GET['tsp'])
+    TOKEN_END_PRICE = float(request.GET['tep'])
+
+    max_profit, max_deposit_frequency = (0, 0)
+    for deposit_frequency in range(1, TIME_HORIZON_DAYS + 1):
+        token_count = TOKEN_START_COUNT
+        fee_balance = 0
+        token_start_balance = token_count * TOKEN_START_PRICE
+        
+        token_count = token_count * ((1 + TOKEN_APR * deposit_frequency/100/TIME_HORIZON_DAYS)**(TIME_HORIZON_DAYS // deposit_frequency)) * (1 + TOKEN_APR * (TIME_HORIZON_DAYS % deposit_frequency)/100/TIME_HORIZON_DAYS)
+        fee_balance = GAS_FEE * math.ceil(TIME_HORIZON_DAYS / deposit_frequency)
+        token_end_balance = token_count * TOKEN_END_PRICE
+        profit = token_end_balance - fee_balance - token_start_balance
+
+        if deposit_frequency == 1:
+            max_profit = profit
+            max_deposit_frequency = deposit_frequency
+        elif profit > max_profit :
+            max_profit = profit
+            max_deposit_frequency = deposit_frequency
+    
+    return HttpResponse(max_deposit_frequency)
+ #

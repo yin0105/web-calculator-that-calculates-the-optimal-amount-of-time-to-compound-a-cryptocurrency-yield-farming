@@ -19,6 +19,7 @@ from calculator import views
 
 urlpatterns = [
     path('', views.index, name='home'),
+    path('calc', views.calc, name='calc'),
 ]
 # urlpatterns = [
 #     path('admin/', admin.site.urls),

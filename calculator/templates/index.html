@@ -108,7 +108,7 @@
     <body>
 		<div class="main">
 			<div class="header">
-				<h1>Calculator</h1>
+				<h1>Financial Calculator</h1>
 			</div>
 			<div class="container">
 				<div id="left-container">
@@ -186,6 +186,10 @@
 				<div id="right-container" class="d-flex justify-content-center">
 					<div class="align-self-center">
 						<h2>Deposit Frequency: <span id="sp_df"></span></h2>
+						<div style="height: 600px; overflow: auto; margin-top: 50px;">
+							<div id="results">
+							</div>
+						</div>
 					</div>
 
 				</div>
@@ -200,7 +204,15 @@
 			
 					success: function (result) { 
 						console.log(result);
-						$("#sp_df").text(result + " days");
+						re_arr = result.split(",");
+						$("#results").html("");
+						$("#sp_df").text(re_arr[0] + " days");
+						
+						console.log(re_arr.length);
+						for (i in re_arr) {
+							if(i == 0) { continue;}
+							$("#results").html($("#results").html() + "<h5>Depositing every " + i +" days: " + re_arr[i] + "</h5>")
+						}
 					},
 					error: function (error) {
 						console.log("Error");

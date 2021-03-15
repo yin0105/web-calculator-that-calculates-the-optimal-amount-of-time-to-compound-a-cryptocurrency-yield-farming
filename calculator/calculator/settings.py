@@ -25,7 +25,7 @@ SECRET_KEY = 'sj$%b%h+1tse*5w%a2tn&&^(8dl94b^blo$=0a+49njlb&av+j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-web-calc-5-env.eba-dwwpmbuv.sa-east-1.elasticbeanstalk.com', '54.207.107.119', '54.207.57.238']
+ALLOWED_HOSTS = ['django-web-calc-5-env.eba-dwwpmbuv.sa-east-1.elasticbeanstalk.com', '54.207.107.119', '54.207.57.238', 'localhost']
 
 
 

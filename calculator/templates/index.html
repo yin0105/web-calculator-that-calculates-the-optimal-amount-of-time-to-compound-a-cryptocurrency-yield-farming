@@ -72,6 +72,7 @@
 				height: 60px;
 				width: 180px;
 				position: relative;
+				margin-top: 2px;
 			}
 
 			.btn-pos {
@@ -186,6 +187,8 @@
 				<div id="right-container" class="d-flex justify-content-center">
 					<div class="align-self-center">
 						<h2>Deposit Frequency: <span id="sp_df"></span></h2>
+						<p>
+						<h3>Final Total Count: <span id="sp_ftc"></span></h3>
 						<div style="height: 600px; overflow: auto; margin-top: 50px;">
 							<div id="results">
 							</div>
@@ -205,12 +208,14 @@
 					success: function (result) { 
 						console.log(result);
 						re_arr = result.split(",");
+						re_arr_2 = re_arr[0].split("_");
 						$("#results").html("");
-						$("#sp_df").text(re_arr[0] + " days");
+						$("#sp_df").text(re_arr_2[0] + " days");
+						$("#sp_ftc").text(re_arr_2[1]);
 						
 						console.log(re_arr.length);
 						for (i in re_arr) {
-							if(i == 0) { continue;}
+							if(i == 1) { continue;}
 							$("#results").html($("#results").html() + "<h5>Depositing every " + i +" days: " + re_arr[i] + "</h5>")
 						}
 					},

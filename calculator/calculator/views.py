@@ -78,7 +78,7 @@ def calc(request):
     TOKEN_START_PRICE = float(request.GET['tsp'])
     TOKEN_END_PRICE = float(request.GET['tep'])
 
-    max_profit, max_deposit_frequency = (0, 0)
+    max_profit, max_deposit_frequency, max_token_count = (0, 0, 0)
     profits = []
     profits.append(0)
     for deposit_frequency in range(1, TIME_HORIZON_DAYS + 1):
@@ -95,9 +95,13 @@ def calc(request):
         if deposit_frequency == 1:
             max_profit = profit
             max_deposit_frequency = deposit_frequency
+            max_token_count = token_count
         elif profit > max_profit :
             max_profit = profit
             max_deposit_frequency = deposit_frequency
-    profits[0] = str(max_deposit_frequency)
+            max_token_count = token_count
+
+        
+    profits[0] = str(max_deposit_frequency) + "_" + str(max_token_count)
     return HttpResponse(",".join(profits))
  #

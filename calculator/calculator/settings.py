@@ -25,7 +25,8 @@ SECRET_KEY = 'sj$%b%h+1tse*5w%a2tn&&^(8dl94b^blo$=0a+49njlb&av+j'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-web-calc-5-env.eba-dwwpmbuv.sa-east-1.elasticbeanstalk.com', '54.207.107.119', '54.207.57.238']
+
 
 
 # Application definition
@@ -119,7 +120,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/var/app/current/static'
+# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+print("STATIC_ROOT = " + STATIC_ROOT)
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, "static"),
+# )

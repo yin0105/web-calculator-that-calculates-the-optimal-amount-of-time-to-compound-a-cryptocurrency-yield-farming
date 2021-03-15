@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os, math
 
 cur_path = dirname(__file__)
-env_path = cur_path[:cur_path.rfind("\\")] 
+env_path = cur_path[:cur_path.rfind(os.path.sep)] 
 dotenv_path = join(env_path, '.env')
 load_dotenv(dotenv_path)
 print("### " + dotenv_path + " ##")

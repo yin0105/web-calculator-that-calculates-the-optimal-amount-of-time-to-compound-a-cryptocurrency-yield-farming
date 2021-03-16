@@ -1,21 +1,21 @@
 # web-calculator-that-calculates-the-optimal-amount-of-time-to-compound-a-cryptocurrency-yield-farming
-## Git Clone
+## Clone Git
 - git clone https://github.com/solutionLi/web-calculator-that-calculates-the-optimal-amount-of-time-to-compound-a-cryptocurrency-yield-farming
 ------
 
-2. Move to calculator folder.
-## cd calculator
+## Move to calculator folder.
+cd calculator
 --------
 
-3. Set up virtual environment and Run it
-## python -m venv env
-## env\scripts\activate
+## Set up virtual environment and Run it
+ python -m venv env
+ env\scripts\activate
 --------
 
-4. Install the dependencies.
-## pip install -r requirements.txt
+## Install the dependencies.
+ pip install -r requirements.txt
 --------
 
-5. Setting environment variable.
+## Setting environment variable.
 
 

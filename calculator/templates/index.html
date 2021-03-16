@@ -215,7 +215,7 @@
 						
 						console.log(re_arr.length);
 						for (i in re_arr) {
-							if(i == 1) { continue;}
+							if(i < 1) { continue;}
 							$("#results").html($("#results").html() + "<h5>Depositing every " + i +" days: " + re_arr[i] + "</h5>")
 						}
 					},

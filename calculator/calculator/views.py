@@ -45,7 +45,7 @@ def index(request):
     if "th" in request.GET :
         context['TIME_HORIZON_DAYS_FROM'] = request.GET["th"]
     else:
-        context['TIME_HORIZON_DAYS_FROM'] = (context['TIME_HORIZON_DAYS_MIN'] + context['TIME_HORIZON_DAYS_MAX']) / 2
+        context['TIME_HORIZON_DAYS_FROM'] = (context['TIME_HORIZON_DAYS_MIN'] + context['TIME_HORIZON_DAYS_MAX']) // 2
 
     if "tsc" in request.GET :
         context['TOKEN_START_COUNT_FROM'] = request.GET["tsc"]
